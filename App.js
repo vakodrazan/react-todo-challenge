@@ -19,6 +19,10 @@ function App() {
         ]);
         setTodoItem("")
     }
+    function completeTodo(id, complete) {
+        setTodo(todo.map(item => item.id === id ? {...item, isComplete: complete} : item))
+    }
+
 
     return (
         <main>
@@ -33,6 +37,7 @@ function App() {
             {todo.map(item => <TodoList 
                 key={item.id} 
                 todo={item} 
+                completeTodo={completeTodo}
             />)}
         </main>
     )
