@@ -1,10 +1,15 @@
 import React from "react";
 
 
-function Input({handleSubmit}) {
+function Input({handleSubmit, setTodoItem, todoItem}) {
     return (
         <form onSubmit={handleSubmit}>
-            <input type="text" name="todo" />
+            <input 
+                type="text" 
+                name="todo" 
+                // value={todoItem}
+                onChange={(e) => setTodoItem(e.target.value)}
+            />
             <button>Add</button>
         </form>
 
