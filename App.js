@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { Link, Route, Switch } from "react-router-dom";
+import Active from "./components/Active";
+import CompletedTask from "./components/CompletedTask";
 import Input from "./components/Input";
 import TodoList from "./components/TodoList";
 
@@ -29,16 +32,41 @@ function App() {
             <header>
                 <h1>Todo</h1>
             </header>
-            <Input 
-                handleSubmit={handleSubmit} 
-                setTodoItem={setTodoItem} 
-                todoItem={todoItem}
-            />
-            {todo.map(item => <TodoList 
-                key={item.id} 
-                todo={item} 
-                completeTodo={completeTodo}
-            />)}
+            <article>
+                <ul>
+                    <li>
+                        <Link to="/">All</Link>
+                    </li>
+                    <li>
+                        <Link to="/active">Active</Link>
+                    </li>
+                    <li>
+                        <Link to="/completed">Completed</Link>
+                    </li>
+                </ul>
+                <Input 
+                    handleSubmit={handleSubmit} 
+                    setTodoItem={setTodoItem} 
+                    todoItem={todoItem}
+                />
+                <div>
+                    <Switch>
+                        <Route path="/active">
+                            <Active todo={todo} completeTodo={completeTodo} />
+                        </Route>
+                        <Route path="/completed">
+                            <CompletedTask todo={todo} completeTodo={completeTodo} />
+                        </Route>
+                        <Route path="/">
+                            {todo.map(item => <TodoList 
+                                key={item.id} 
+                                todo={item} 
+                                completeTodo={completeTodo}
+                            />)}
+                        </Route>
+                    </Switch>
+                </div>
+            </article>
         </main>
     )
 }
