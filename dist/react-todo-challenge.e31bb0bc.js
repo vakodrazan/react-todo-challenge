@@ -33853,7 +33853,7 @@ if ("development" !== "production") {
     style: _propTypes.default.object
   });
 }
-},{"react-router":"node_modules/react-router/esm/react-router.js","@babel/runtime/helpers/esm/inheritsLoose":"node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","react":"node_modules/react/index.js","history":"node_modules/history/esm/history.js","prop-types":"node_modules/prop-types/index.js","tiny-warning":"node_modules/tiny-warning/dist/tiny-warning.esm.js","@babel/runtime/helpers/esm/extends":"node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","tiny-invariant":"node_modules/tiny-invariant/dist/tiny-invariant.esm.js"}],"components/TodoList.js":[function(require,module,exports) {
+},{"react-router":"node_modules/react-router/esm/react-router.js","@babel/runtime/helpers/esm/inheritsLoose":"node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","react":"node_modules/react/index.js","history":"node_modules/history/esm/history.js","prop-types":"node_modules/prop-types/index.js","tiny-warning":"node_modules/tiny-warning/dist/tiny-warning.esm.js","@babel/runtime/helpers/esm/extends":"node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","tiny-invariant":"node_modules/tiny-invariant/dist/tiny-invariant.esm.js"}],"components/Active.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33862,62 +33862,17 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function TodoList(_ref) {
-  var todo = _ref.todo,
-      completeTodo = _ref.completeTodo;
-
-  var checkTodo = function checkTodo(e) {
-    return completeTodo(todo.id, e.target.checked);
-  };
-
-  return /*#__PURE__*/_react.default.createElement("div", {
-    className: todo.isComplete ? "complete" : ""
-  }, /*#__PURE__*/_react.default.createElement("input", {
-    id: todo.id,
-    type: "checkbox",
-    checked: todo.isComplete,
-    onChange: checkTodo
-  }), /*#__PURE__*/_react.default.createElement("span", {
-    htmlFor: todo.id
-  }, todo.title), todo.isComplete && /*#__PURE__*/_react.default.createElement("button", null, "X"));
-}
-
-var _default = TodoList;
-exports.default = _default;
-},{"react":"node_modules/react/index.js"}],"components/Active.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _TodoList = _interopRequireDefault(require("./TodoList"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Active(_ref) {
-  var todo = _ref.todo,
-      completeTodo = _ref.completeTodo;
-  return /*#__PURE__*/_react.default.createElement("div", null, todo.filter(function (item) {
-    return !item.isComplete;
-  }).map(function (item) {
-    return /*#__PURE__*/_react.default.createElement(_TodoList.default, {
-      key: item.id,
-      todo: item,
-      completeTodo: completeTodo
-    });
-  }));
+  var activeTask = _ref.activeTask;
+  return /*#__PURE__*/_react.default.createElement("div", null, activeTask);
 }
 
 var _default = Active;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","./TodoList":"components/TodoList.js"}],"components/CompletedTask.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js"}],"components/CompletedTask.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33927,27 +33882,16 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _TodoList = _interopRequireDefault(require("./TodoList"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function CompletedTask(_ref) {
-  var todo = _ref.todo,
-      completeTodo = _ref.completeTodo;
-  return /*#__PURE__*/_react.default.createElement("div", null, todo.filter(function (item) {
-    return item.isComplete;
-  }).map(function (item) {
-    return /*#__PURE__*/_react.default.createElement(_TodoList.default, {
-      key: item.id,
-      todo: item,
-      completeTodo: completeTodo
-    });
-  }), /*#__PURE__*/_react.default.createElement("button", null, "Delete all"));
+  var completed = _ref.completed;
+  return /*#__PURE__*/_react.default.createElement("div", null, completed, /*#__PURE__*/_react.default.createElement("button", null, "Delete all"));
 }
 
 var _default = CompletedTask;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","./TodoList":"components/TodoList.js"}],"components/Header.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js"}],"components/Header.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34002,6 +33946,40 @@ function Input(_ref) {
 }
 
 var _default = Input;
+exports.default = _default;
+},{"react":"node_modules/react/index.js"}],"components/TodoList.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function TodoList(_ref) {
+  var todo = _ref.todo,
+      completeTodo = _ref.completeTodo;
+
+  var checkTodo = function checkTodo(e) {
+    return completeTodo(todo.id, e.target.checked);
+  };
+
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: todo.isComplete ? "complete" : ""
+  }, /*#__PURE__*/_react.default.createElement("input", {
+    id: todo.id,
+    type: "checkbox",
+    checked: todo.isComplete,
+    onChange: checkTodo
+  }), /*#__PURE__*/_react.default.createElement("label", {
+    htmlFor: todo.id
+  }, todo.title), todo.isComplete && /*#__PURE__*/_react.default.createElement("button", null, "X"));
+}
+
+var _default = TodoList;
 exports.default = _default;
 },{"react":"node_modules/react/index.js"}],"App.js":[function(require,module,exports) {
 "use strict";
@@ -34090,6 +34068,24 @@ function App() {
     }));
   }
 
+  var completed = todo.filter(function (item) {
+    return item.isComplete;
+  }).map(function (item) {
+    return /*#__PURE__*/_react.default.createElement(_TodoList.default, {
+      key: item.id,
+      todo: item,
+      completeTodo: completeTodo
+    });
+  });
+  var activeTask = todo.filter(function (item) {
+    return !item.isComplete;
+  }).map(function (item) {
+    return /*#__PURE__*/_react.default.createElement(_TodoList.default, {
+      key: item.id,
+      todo: item,
+      completeTodo: completeTodo
+    });
+  });
   return /*#__PURE__*/_react.default.createElement("main", null, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement("h1", null, "Todo")), /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement(_Input.default, {
     handleSubmit: handleSubmit,
     setTodoItem: setTodoItem,
@@ -34097,13 +34093,11 @@ function App() {
   }), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     path: "/active"
   }, /*#__PURE__*/_react.default.createElement(_Active.default, {
-    todo: todo,
-    completeTodo: completeTodo
+    activeTask: activeTask
   })), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     path: "/completed"
   }, /*#__PURE__*/_react.default.createElement(_CompletedTask.default, {
-    todo: todo,
-    completeTodo: completeTodo
+    completed: completed
   })), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     path: "/"
   }, todo.map(function (item) {

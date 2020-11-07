@@ -28,6 +28,20 @@ function App() {
     }
 
 
+    const completed = todo.filter(item => item.isComplete)
+                            .map(item => <TodoList 
+                                key={item.id} 
+                                todo={item} 
+                                completeTodo={completeTodo}
+                            />)
+                        
+    const activeTask = todo.filter(item => !item.isComplete)
+                            .map(item => <TodoList 
+                                key={item.id} 
+                                todo={item} 
+                                completeTodo={completeTodo}
+                            />) 
+
     return (
         <main>
             <header>
@@ -43,10 +57,10 @@ function App() {
                 <div>
                     <Switch>
                         <Route path="/active">
-                            <Active todo={todo} completeTodo={completeTodo} />
+                            <Active activeTask={activeTask} />
                         </Route>
                         <Route path="/completed">
-                            <CompletedTask todo={todo} completeTodo={completeTodo} />
+                            <CompletedTask completed={completed} />
                         </Route>
                         <Route path="/">
                             {todo.map(item => <TodoList 

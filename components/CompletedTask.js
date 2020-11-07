@@ -1,18 +1,9 @@
 import React from "react";
-import TodoList from "./TodoList";
 
-
-
-function CompletedTask({todo, completeTodo}) {
+function CompletedTask({completed}) {
     return (
         <div>
-            {todo.filter(item => item.isComplete)
-                .map(item => <TodoList 
-                    key={item.id} 
-                    todo={item} 
-                    completeTodo={completeTodo}
-                />)
-            }
+            {completed}
             <button>Delete all</button>
         </div>
     )
