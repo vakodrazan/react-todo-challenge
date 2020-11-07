@@ -29876,6 +29876,8 @@ function App() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    if (todoItem === "") return; // To prevent from submit an empty value
+
     setTodo(function (prevTodo) {
       return [].concat(_toConsumableArray(prevTodo), [{
         id: Date.now(),

@@ -8,6 +8,7 @@ function App() {
 
     function handleSubmit(e) {
         e.preventDefault();
+        if (todoItem === "") return; // To prevent from submit an empty value
         setTodo(prevTodo => [
             ...prevTodo, 
             {
@@ -17,6 +18,7 @@ function App() {
         ]);
         e.currentTarget.reset()
     }
+
     return (
         <main>
             <header>
