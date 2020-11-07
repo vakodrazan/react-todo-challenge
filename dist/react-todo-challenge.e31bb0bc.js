@@ -29877,7 +29877,10 @@ function App() {
   function handleSubmit(e) {
     e.preventDefault();
     setTodo(function (prevTodo) {
-      return [].concat(_toConsumableArray(prevTodo), [todoItem]);
+      return [].concat(_toConsumableArray(prevTodo), [{
+        id: Date.now(),
+        title: todoItem
+      }]);
     });
     e.currentTarget.reset();
   }
@@ -29888,8 +29891,8 @@ function App() {
     todoItem: todoItem
   }), todo.map(function (item) {
     return /*#__PURE__*/_react.default.createElement(_TodoList.default, {
-      key: new Date(),
-      todo: item
+      key: item.id,
+      todo: item.title
     });
   }));
 }
@@ -29936,7 +29939,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61439" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65255" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -8,7 +8,13 @@ function App() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        setTodo(prevTodo => [...prevTodo, todoItem]);
+        setTodo(prevTodo => [
+            ...prevTodo, 
+            {
+                id: Date.now(),
+                title: todoItem
+            }
+        ]);
         e.currentTarget.reset()
     }
     return (
@@ -21,7 +27,7 @@ function App() {
                 setTodoItem={setTodoItem} 
                 todoItem={todoItem}
             />
-            {todo.map(item => <TodoList key={new Date()} todo={item} />)}
+            {todo.map(item => <TodoList key={item.id} todo={item.title} />)}
         </main>
     )
 }
