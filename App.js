@@ -5,7 +5,6 @@ import TodoList from "./components/TodoList";
 function App() {
     const [todo, setTodo] = useState([]);
     const [todoItem, setTodoItem] = useState("");
-    const [isComplete, setComplete] = useState(false);
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -15,6 +14,7 @@ function App() {
             {
                 id: Date.now(),
                 title: todoItem,
+                isComplete: false
             }
         ]);
         setTodoItem("")
@@ -33,8 +33,6 @@ function App() {
             {todo.map(item => <TodoList 
                 key={item.id} 
                 todo={item} 
-                isComplete={isComplete} 
-                setComplete={setComplete} 
             />)}
         </main>
     )
