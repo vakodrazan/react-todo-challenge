@@ -33942,12 +33942,38 @@ function CompletedTask(_ref) {
       todo: item,
       completeTodo: completeTodo
     });
-  }));
+  }), /*#__PURE__*/_react.default.createElement("button", null, "Delete all"));
 }
 
 var _default = CompletedTask;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","./TodoList":"components/TodoList.js"}],"components/Input.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./TodoList":"components/TodoList.js"}],"components/Header.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _reactRouterDom = require("react-router-dom");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Header() {
+  return /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    to: "/"
+  }, "All")), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    to: "/active"
+  }, "Active")), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    to: "/completed"
+  }, "Completed")));
+}
+
+var _default = Header;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js"}],"components/Input.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33992,6 +34018,8 @@ var _reactRouterDom = require("react-router-dom");
 var _Active = _interopRequireDefault(require("./components/Active"));
 
 var _CompletedTask = _interopRequireDefault(require("./components/CompletedTask"));
+
+var _Header = _interopRequireDefault(require("./components/Header"));
 
 var _Input = _interopRequireDefault(require("./components/Input"));
 
@@ -34062,13 +34090,7 @@ function App() {
     }));
   }
 
-  return /*#__PURE__*/_react.default.createElement("main", null, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement("h1", null, "Todo")), /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-    to: "/"
-  }, "All")), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-    to: "/active"
-  }, "Active")), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-    to: "/completed"
-  }, "Completed"))), /*#__PURE__*/_react.default.createElement(_Input.default, {
+  return /*#__PURE__*/_react.default.createElement("main", null, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement("h1", null, "Todo")), /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement(_Input.default, {
     handleSubmit: handleSubmit,
     setTodoItem: setTodoItem,
     todoItem: todoItem
@@ -34095,7 +34117,7 @@ function App() {
 
 var _default = App;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./components/Active":"components/Active.js","./components/CompletedTask":"components/CompletedTask.js","./components/Input":"components/Input.js","./components/TodoList":"components/TodoList.js"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./components/Active":"components/Active.js","./components/CompletedTask":"components/CompletedTask.js","./components/Header":"components/Header.js","./components/Input":"components/Input.js","./components/TodoList":"components/TodoList.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));

@@ -13,6 +13,7 @@ function CompletedTask({todo, completeTodo}) {
                     completeTodo={completeTodo}
                 />)
             }
+            <button>Delete all</button>
         </div>
     )
 }

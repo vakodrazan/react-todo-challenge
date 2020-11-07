@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Link, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Active from "./components/Active";
 import CompletedTask from "./components/CompletedTask";
+import Header from "./components/Header";
 import Input from "./components/Input";
 import TodoList from "./components/TodoList";
 
@@ -33,17 +34,7 @@ function App() {
                 <h1>Todo</h1>
             </header>
             <article>
-                <ul>
-                    <li>
-                        <Link to="/">All</Link>
-                    </li>
-                    <li>
-                        <Link to="/active">Active</Link>
-                    </li>
-                    <li>
-                        <Link to="/completed">Completed</Link>
-                    </li>
-                </ul>
+                <Header />
                 <Input 
                     handleSubmit={handleSubmit} 
                     setTodoItem={setTodoItem} 
