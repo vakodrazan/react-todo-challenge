@@ -11,7 +11,7 @@ function TodoList({todo, completeTodo}) {
                 checked={todo.isComplete}
                 onChange={checkTodo}
             />
-            <label htmlFor={todo.id}>{todo.title}</label>
+            <span htmlFor={todo.id}>{todo.title}</span>
             {todo.isComplete && <button>X</button>}
         </div>
     )
