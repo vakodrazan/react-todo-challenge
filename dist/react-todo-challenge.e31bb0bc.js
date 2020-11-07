@@ -29815,16 +29815,13 @@ var _react = _interopRequireDefault(require("react"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function TodoList(_ref) {
-  var todo = _ref.todo,
-      isComplete = _ref.isComplete,
-      setComplete = _ref.setComplete;
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("input", {
+  var todo = _ref.todo;
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: todo.isComplete ? "complete" : ""
+  }, /*#__PURE__*/_react.default.createElement("input", {
     id: todo.id,
-    type: "checkbox",
-    checked: isComplete,
-    onChange: function onChange() {
-      return setComplete(!isComplete);
-    }
+    type: "checkbox" // checked={todo.isComplete}
+
   }), /*#__PURE__*/_react.default.createElement("label", {
     htmlFor: todo.id
   }, todo.title));
@@ -29883,11 +29880,6 @@ function App() {
       todoItem = _useState4[0],
       setTodoItem = _useState4[1];
 
-  var _useState5 = (0, _react.useState)(false),
-      _useState6 = _slicedToArray(_useState5, 2),
-      isComplete = _useState6[0],
-      setComplete = _useState6[1];
-
   function handleSubmit(e) {
     e.preventDefault();
     if (todoItem === "") return; // To prevent from submit an empty value
@@ -29895,7 +29887,8 @@ function App() {
     setTodo(function (prevTodo) {
       return [].concat(_toConsumableArray(prevTodo), [{
         id: Date.now(),
-        title: todoItem
+        title: todoItem,
+        isComplete: false
       }]);
     });
     setTodoItem("");
@@ -29908,9 +29901,7 @@ function App() {
   }), todo.map(function (item) {
     return /*#__PURE__*/_react.default.createElement(_TodoList.default, {
       key: item.id,
-      todo: item,
-      isComplete: isComplete,
-      setComplete: setComplete
+      todo: item
     });
   }));
 }

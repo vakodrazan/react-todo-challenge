@@ -1,14 +1,13 @@
 import React from "react";
 
 
-function TodoList({todo, isComplete, setComplete}) {
+function TodoList({todo}) {
     return (
-        <div>
+        <div className={todo.isComplete ? "complete" : ""}>
             <input 
                 id={todo.id} 
                 type="checkbox" 
-                checked={isComplete} 
-                onChange={() => setComplete(!isComplete)}
+                // checked={todo.isComplete}
             />
             <label htmlFor={todo.id}>{todo.title}</label>
         </div>
