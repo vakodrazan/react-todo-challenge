@@ -1,7 +1,7 @@
 import React from "react";
 
-
 function TodoList({todo, completeTodo}) {
+
     const checkTodo = e => completeTodo(todo.id, e.target.checked);
     return (
         <div className={todo.isComplete ? "complete" : ""}>
