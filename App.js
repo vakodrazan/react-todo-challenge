@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Input from "./components/Input";
-import TodoList from "./TodoList";
+import TodoList from "./components/TodoList";
 
 function App() {
     const [todo, setTodo] = useState([]);
     const [todoItem, setTodoItem] = useState("");
+    const [isComplete, setComplete] = useState(false);
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -13,10 +14,10 @@ function App() {
             ...prevTodo, 
             {
                 id: Date.now(),
-                title: todoItem
+                title: todoItem,
             }
         ]);
-        e.currentTarget.reset()
+        setTodoItem("")
     }
 
     return (
@@ -29,7 +30,12 @@ function App() {
                 setTodoItem={setTodoItem} 
                 todoItem={todoItem}
             />
-            {todo.map(item => <TodoList key={item.id} todo={item.title} />)}
+            {todo.map(item => <TodoList 
+                key={item.id} 
+                todo={item} 
+                isComplete={isComplete} 
+                setComplete={setComplete} 
+            />)}
         </main>
     )
 }

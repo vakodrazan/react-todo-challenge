@@ -29792,8 +29792,8 @@ function Input(_ref) {
     onSubmit: handleSubmit
   }, /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
-    name: "todo" // value={todoItem}
-    ,
+    name: "todo",
+    value: todoItem,
     onChange: function onChange(e) {
       return setTodoItem(e.target.value);
     }
@@ -29802,7 +29802,7 @@ function Input(_ref) {
 
 var _default = Input;
 exports.default = _default;
-},{"react":"node_modules/react/index.js"}],"TodoList.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js"}],"components/TodoList.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29815,10 +29815,19 @@ var _react = _interopRequireDefault(require("react"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function TodoList(_ref) {
-  var todo = _ref.todo;
+  var todo = _ref.todo,
+      isComplete = _ref.isComplete,
+      setComplete = _ref.setComplete;
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("input", {
-    type: "checkbox"
-  }), /*#__PURE__*/_react.default.createElement("label", null, todo));
+    id: todo.id,
+    type: "checkbox",
+    checked: isComplete,
+    onChange: function onChange() {
+      return setComplete(!isComplete);
+    }
+  }), /*#__PURE__*/_react.default.createElement("label", {
+    htmlFor: todo.id
+  }, todo.title));
 }
 
 var _default = TodoList;
@@ -29835,7 +29844,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _Input = _interopRequireDefault(require("./components/Input"));
 
-var _TodoList = _interopRequireDefault(require("./TodoList"));
+var _TodoList = _interopRequireDefault(require("./components/TodoList"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29874,6 +29883,11 @@ function App() {
       todoItem = _useState4[0],
       setTodoItem = _useState4[1];
 
+  var _useState5 = (0, _react.useState)(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      isComplete = _useState6[0],
+      setComplete = _useState6[1];
+
   function handleSubmit(e) {
     e.preventDefault();
     if (todoItem === "") return; // To prevent from submit an empty value
@@ -29884,7 +29898,7 @@ function App() {
         title: todoItem
       }]);
     });
-    e.currentTarget.reset();
+    setTodoItem("");
   }
 
   return /*#__PURE__*/_react.default.createElement("main", null, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement("h1", null, "Todo")), /*#__PURE__*/_react.default.createElement(_Input.default, {
@@ -29894,14 +29908,16 @@ function App() {
   }), todo.map(function (item) {
     return /*#__PURE__*/_react.default.createElement(_TodoList.default, {
       key: item.id,
-      todo: item.title
+      todo: item,
+      isComplete: isComplete,
+      setComplete: setComplete
     });
   }));
 }
 
 var _default = App;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","./components/Input":"components/Input.js","./TodoList":"TodoList.js"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./components/Input":"components/Input.js","./components/TodoList":"components/TodoList.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));

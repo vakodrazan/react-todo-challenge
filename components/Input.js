@@ -7,7 +7,7 @@ function Input({handleSubmit, setTodoItem, todoItem}) {
             <input 
                 type="text" 
                 name="todo" 
-                // value={todoItem}
+                value={todoItem}
                 onChange={(e) => setTodoItem(e.target.value)}
             />
             <button>Add</button>
