@@ -1,3 +1,64 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
 .complete {
     text-decoration: line-through;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid gray;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 20px;
+}
+
+form {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+input[type="text"] {
+    color: black;
+    font-size: 1rem;
+    width: 70%;
+    height: 2rem;
+    margin-right: 1rem;
+    border-radius: 5px;
+    border: none;
+    background-color: rgba(206, 237, 246, 0.863);
+}
+
+button {
+    color: white;
+    background-color: darkgray;
+    border: none;
+    border-radius: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+form button {
+    height: 2.5rem;
+    background-color: blue;
 }
