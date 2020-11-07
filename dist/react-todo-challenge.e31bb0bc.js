@@ -29831,7 +29831,7 @@ function TodoList(_ref) {
     onChange: checkTodo
   }), /*#__PURE__*/_react.default.createElement("label", {
     htmlFor: todo.id
-  }, todo.title));
+  }, todo.title), todo.isComplete && /*#__PURE__*/_react.default.createElement("button", null, "X"));
 }
 
 var _default = TodoList;
