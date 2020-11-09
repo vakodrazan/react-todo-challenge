@@ -33872,7 +33872,7 @@ function Active(_ref) {
 
 var _default = Active;
 exports.default = _default;
-},{"react":"node_modules/react/index.js"}],"components/CompletedTask.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js"}],"components/TodoList.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33884,14 +33884,194 @@ var _react = _interopRequireDefault(require("react"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function TodoList(_ref) {
+  var todo = _ref.todo,
+      completeTodo = _ref.completeTodo,
+      removeTodo = _ref.removeTodo;
+
+  var checkTodo = function checkTodo(e) {
+    return completeTodo(todo.id, e.target.checked);
+  };
+
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: todo.isComplete ? "complete" : ""
+  }, /*#__PURE__*/_react.default.createElement("input", {
+    id: todo.id,
+    type: "checkbox",
+    checked: todo.isComplete,
+    onChange: checkTodo
+  }), /*#__PURE__*/_react.default.createElement("label", {
+    htmlFor: todo.id
+  }, todo.title), todo.isComplete && /*#__PURE__*/_react.default.createElement("button", {
+    onClick: function onClick() {
+      return removeTodo(todo.id);
+    }
+  }, "X"));
+}
+
+var _default = TodoList;
+exports.default = _default;
+},{"react":"node_modules/react/index.js"}],"useTodo.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _TodoList = _interopRequireDefault(require("./components/TodoList"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function useTodo() {
+  var _useState = (0, _react.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      todo = _useState2[0],
+      setTodo = _useState2[1];
+
+  var _useState3 = (0, _react.useState)(""),
+      _useState4 = _slicedToArray(_useState3, 2),
+      todoItem = _useState4[0],
+      setTodoItem = _useState4[1];
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (todoItem === "") return; // To prevent from submit an empty value
+
+    setTodo(function (prevTodo) {
+      return [].concat(_toConsumableArray(prevTodo), [{
+        id: Date.now(),
+        title: todoItem,
+        isComplete: false
+      }]);
+    });
+    setTodoItem("");
+  }
+
+  function completeTodo(id, complete) {
+    setTodo(todo.map(function (item) {
+      return item.id === id ? _objectSpread(_objectSpread({}, item), {}, {
+        isComplete: complete
+      }) : item;
+    }));
+  }
+
+  function removeTodo(id) {
+    var deleteTodo = todo.filter(function (item) {
+      return item.id !== id;
+    });
+    setTodo(deleteTodo);
+  }
+
+  var completed = todo.filter(function (item) {
+    return item.isComplete;
+  }).map(function (item) {
+    return /*#__PURE__*/_react.default.createElement(_TodoList.default, {
+      key: item.id,
+      todo: item,
+      completeTodo: completeTodo,
+      removeTodo: removeTodo
+    });
+  });
+  var activeTask = todo.filter(function (item) {
+    return !item.isComplete;
+  }).map(function (item) {
+    return /*#__PURE__*/_react.default.createElement(_TodoList.default, {
+      key: item.id,
+      todo: item,
+      completeTodo: completeTodo
+    });
+  });
+  return [todo, setTodo, todoItem, setTodoItem, completed, activeTask, handleSubmit, completeTodo, removeTodo];
+}
+
+var _default = useTodo;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","./components/TodoList":"components/TodoList.js"}],"components/CompletedTask.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _useTodo3 = _interopRequireDefault(require("../useTodo"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 function CompletedTask(_ref) {
   var completed = _ref.completed;
-  return /*#__PURE__*/_react.default.createElement("div", null, completed, /*#__PURE__*/_react.default.createElement("button", null, "Delete all"));
+
+  var _useTodo = (0, _useTodo3.default)(),
+      _useTodo2 = _slicedToArray(_useTodo, 8),
+      todo = _useTodo2[0],
+      setTodo = _useTodo2[1],
+      todoItem = _useTodo2[2],
+      setTodoItem = _useTodo2[3],
+      activeTask = _useTodo2[4],
+      handleSubmit = _useTodo2[5],
+      completeTodo = _useTodo2[6],
+      removeTodo = _useTodo2[7];
+
+  function removeAllCompletedTodo() {
+    console.log("Delete All");
+    console.log(todo); // setTodo(!completed)
+  }
+
+  return /*#__PURE__*/_react.default.createElement("div", null, completed, /*#__PURE__*/_react.default.createElement("button", {
+    onClick: removeAllCompletedTodo
+  }, "Delete all"));
 }
 
 var _default = CompletedTask;
 exports.default = _default;
-},{"react":"node_modules/react/index.js"}],"components/Header.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../useTodo":"useTodo.js"}],"components/Header.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33947,40 +34127,6 @@ function Input(_ref) {
 
 var _default = Input;
 exports.default = _default;
-},{"react":"node_modules/react/index.js"}],"components/TodoList.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function TodoList(_ref) {
-  var todo = _ref.todo,
-      completeTodo = _ref.completeTodo;
-
-  var checkTodo = function checkTodo(e) {
-    return completeTodo(todo.id, e.target.checked);
-  };
-
-  return /*#__PURE__*/_react.default.createElement("div", {
-    className: todo.isComplete ? "complete" : ""
-  }, /*#__PURE__*/_react.default.createElement("input", {
-    id: todo.id,
-    type: "checkbox",
-    checked: todo.isComplete,
-    onChange: checkTodo
-  }), /*#__PURE__*/_react.default.createElement("label", {
-    htmlFor: todo.id
-  }, todo.title), todo.isComplete && /*#__PURE__*/_react.default.createElement("button", null, "X"));
-}
-
-var _default = TodoList;
-exports.default = _default;
 },{"react":"node_modules/react/index.js"}],"App.js":[function(require,module,exports) {
 "use strict";
 
@@ -34003,25 +34149,13 @@ var _Input = _interopRequireDefault(require("./components/Input"));
 
 var _TodoList = _interopRequireDefault(require("./components/TodoList"));
 
+var _useTodo3 = _interopRequireDefault(require("./useTodo"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -34036,56 +34170,18 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function App() {
-  var _useState = (0, _react.useState)([]),
-      _useState2 = _slicedToArray(_useState, 2),
-      todo = _useState2[0],
-      setTodo = _useState2[1];
+  var _useTodo = (0, _useTodo3.default)(),
+      _useTodo2 = _slicedToArray(_useTodo, 9),
+      todo = _useTodo2[0],
+      setTodo = _useTodo2[1],
+      todoItem = _useTodo2[2],
+      setTodoItem = _useTodo2[3],
+      completed = _useTodo2[4],
+      activeTask = _useTodo2[5],
+      handleSubmit = _useTodo2[6],
+      completeTodo = _useTodo2[7],
+      removeTodo = _useTodo2[8];
 
-  var _useState3 = (0, _react.useState)(""),
-      _useState4 = _slicedToArray(_useState3, 2),
-      todoItem = _useState4[0],
-      setTodoItem = _useState4[1];
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    if (todoItem === "") return; // To prevent from submit an empty value
-
-    setTodo(function (prevTodo) {
-      return [].concat(_toConsumableArray(prevTodo), [{
-        id: Date.now(),
-        title: todoItem,
-        isComplete: false
-      }]);
-    });
-    setTodoItem("");
-  }
-
-  function completeTodo(id, complete) {
-    setTodo(todo.map(function (item) {
-      return item.id === id ? _objectSpread(_objectSpread({}, item), {}, {
-        isComplete: complete
-      }) : item;
-    }));
-  }
-
-  var completed = todo.filter(function (item) {
-    return item.isComplete;
-  }).map(function (item) {
-    return /*#__PURE__*/_react.default.createElement(_TodoList.default, {
-      key: item.id,
-      todo: item,
-      completeTodo: completeTodo
-    });
-  });
-  var activeTask = todo.filter(function (item) {
-    return !item.isComplete;
-  }).map(function (item) {
-    return /*#__PURE__*/_react.default.createElement(_TodoList.default, {
-      key: item.id,
-      todo: item,
-      completeTodo: completeTodo
-    });
-  });
   return /*#__PURE__*/_react.default.createElement("main", null, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement("h1", null, "Todo")), /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement(_Input.default, {
     handleSubmit: handleSubmit,
     setTodoItem: setTodoItem,
@@ -34104,14 +34200,15 @@ function App() {
     return /*#__PURE__*/_react.default.createElement(_TodoList.default, {
       key: item.id,
       todo: item,
-      completeTodo: completeTodo
+      completeTodo: completeTodo,
+      removeTodo: removeTodo
     });
   }))))));
 }
 
 var _default = App;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./components/Active":"components/Active.js","./components/CompletedTask":"components/CompletedTask.js","./components/Header":"components/Header.js","./components/Input":"components/Input.js","./components/TodoList":"components/TodoList.js"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./components/Active":"components/Active.js","./components/CompletedTask":"components/CompletedTask.js","./components/Header":"components/Header.js","./components/Input":"components/Input.js","./components/TodoList":"components/TodoList.js","./useTodo":"useTodo.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -34153,7 +34250,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51638" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62949" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

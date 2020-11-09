@@ -5,42 +5,17 @@ import CompletedTask from "./components/CompletedTask";
 import Header from "./components/Header";
 import Input from "./components/Input";
 import TodoList from "./components/TodoList";
+import useTodo from "./useTodo";
 
 function App() {
-    const [todo, setTodo] = useState([]);
-    const [todoItem, setTodoItem] = useState("");
 
-    function handleSubmit(e) {
-        e.preventDefault();
-        if (todoItem === "") return; // To prevent from submit an empty value
-        setTodo(prevTodo => [
-            ...prevTodo, 
-            {
-                id: Date.now(),
-                title: todoItem,
-                isComplete: false
-            }
-        ]);
-        setTodoItem("")
-    }
-    function completeTodo(id, complete) {
-        setTodo(todo.map(item => item.id === id ? {...item, isComplete: complete} : item))
-    }
-
-
-    const completed = todo.filter(item => item.isComplete)
-                            .map(item => <TodoList 
-                                key={item.id} 
-                                todo={item} 
-                                completeTodo={completeTodo}
-                            />)
-                        
-    const activeTask = todo.filter(item => !item.isComplete)
-                            .map(item => <TodoList 
-                                key={item.id} 
-                                todo={item} 
-                                completeTodo={completeTodo}
-                            />) 
+    const [todo, setTodo, 
+        todoItem, setTodoItem,
+        completed, 
+        activeTask,
+        handleSubmit,
+        completeTodo,
+        removeTodo] = useTodo();
 
     return (
         <main>
@@ -67,6 +42,7 @@ function App() {
                                 key={item.id} 
                                 todo={item} 
                                 completeTodo={completeTodo}
+                                removeTodo={removeTodo}
                             />)}
                         </Route>
                     </Switch>

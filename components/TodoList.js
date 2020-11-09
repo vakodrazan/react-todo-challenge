@@ -1,6 +1,6 @@
 import React from "react";
 
-function TodoList({todo, completeTodo}) {
+function TodoList({todo, completeTodo, removeTodo}) {
 
     const checkTodo = e => completeTodo(todo.id, e.target.checked);
     return (
@@ -12,7 +12,7 @@ function TodoList({todo, completeTodo}) {
                 onChange={checkTodo}
             />
             <label htmlFor={todo.id}>{todo.title}</label>
-            {todo.isComplete && <button>X</button>}
+            {todo.isComplete && <button onClick={() => removeTodo(todo.id)}>X</button>}
         </div>
     )
 }

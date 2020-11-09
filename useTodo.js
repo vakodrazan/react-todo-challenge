@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import TodoList from "./components/TodoList";
 
 function useTodo() {
@@ -22,12 +22,19 @@ function useTodo() {
         setTodo(todo.map(item => item.id === id ? {...item, isComplete: complete} : item))
     }
 
+    function removeTodo(id) {
+        const deleteTodo = todo.filter(item => item.id !== id);
+        setTodo(deleteTodo);
+    }
+
+    
 
     const completed = todo.filter(item => item.isComplete)
                             .map(item => <TodoList 
                                 key={item.id} 
                                 todo={item} 
                                 completeTodo={completeTodo}
+                                removeTodo={removeTodo}
                             />)
                         
     const activeTask = todo.filter(item => !item.isComplete)
@@ -43,7 +50,8 @@ function useTodo() {
         completed, 
         activeTask,
         handleSubmit,
-        completeTodo
+        completeTodo,
+        removeTodo
     ];
 }
 
